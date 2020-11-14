@@ -1,4 +1,5 @@
 <?php
+
 namespace Oleglacto\Hints\Models;
 
 use Illuminate\Database\Eloquent\Model;

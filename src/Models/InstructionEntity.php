@@ -22,8 +22,7 @@ class InstructionEntity extends Pivot
      * {@inheritdoc}
      */
     protected $fillable = [
-        'entity_type',
-        'entity_id',
+        'user_id',
         'instruction_id',
         'blocks_viewed',
         'is_viewed',
@@ -34,7 +33,7 @@ class InstructionEntity extends Pivot
         'is_viewed' => 'boolean',
     ];
 
-    protected $primaryKey = 'instruction_entity_id';
+    protected $primaryKey = 'instruction_user_id';
 
     public $timestamps = false;
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInstructionsEntitiesTable extends Migration
+class CreateInstructionsUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateInstructionsEntitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('instructions_entities', function (Blueprint $table) {
+        Schema::create('instructions_users', function (Blueprint $table) {
             $table->increments('instruction_entity_id');
             $table->unsignedInteger('instruction_id');
-            $table->morphs('entity');
+            $table->bigInteger('user_id');
             $table->json('blocks_viewed')
                 ->nullable();
             $table->boolean('is_viewed')->default(false);
@@ -25,7 +25,8 @@ class CreateInstructionsEntitiesTable extends Migration
                 ->references('instruction_id')
                 ->on('instructions');
             $table->index(['instruction_id']);
-            $table->unique(['instruction_id', 'entity_type', 'entity_id']);
+            $table->index(['user_id']);
+            $table->unique(['instruction_id', 'user_id']);
         });
     }
 
@@ -36,6 +37,6 @@ class CreateInstructionsEntitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('instruction_user');
+        Schema::dropIfExists('instructions_users');
     }
 }
